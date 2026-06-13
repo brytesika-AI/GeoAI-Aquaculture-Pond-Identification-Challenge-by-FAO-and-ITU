@@ -157,15 +157,18 @@ class AgenticGeospatialExtrapolator:
         # Simulates Sentinel S1/S2 ranges based on realistic geographical locations in Africa
         # Lake Victoria (Pond/lake characteristics), Niger Delta (Wetland/seasonal), Kajjansi Aquaculture (fish ponds)
         
-        # 1. Check if coordinate falls in Lake Victoria (Uganda/Kenya/Tanzania)
-        # Bounding box roughly: Lat -3.0 to 0.5, Lon 31.5 to 34.8
-        is_lake_victoria = (-3.0 <= lat <= 0.5) and (31.5 <= lon <= 34.8)
+        # 1. Check if coordinate falls in Lake Victoria or Lake Kariba (Zambia/Zimbabwe)
+        is_lake_victoria = ((-3.0 <= lat <= 0.5) and (31.5 <= lon <= 34.8)) or \
+                           ((-18.0 <= lat <= -16.0) and (27.5 <= lon <= 29.5))
         
-        # 2. Check if near Kajjansi Aquaculture Station, Uganda (approx Lat 0.20, Lon 32.54)
-        is_kajjansi = (0.15 <= lat <= 0.25) and (32.45 <= lon <= 32.60)
+        # 2. Check if near Kajjansi Aquaculture, Kafue River Aquaculture (Zambia), or Hermanus Abalone Farm (South Africa)
+        is_kajjansi = ((0.15 <= lat <= 0.25) and (32.45 <= lon <= 32.60)) or \
+                      ((-16.0 <= lat <= -15.5) and (28.0 <= lon <= 28.5)) or \
+                      ((-35.0 <= lat <= -34.0) and (19.0 <= lon <= 19.5))
         
-        # 3. Check if Niger Delta (approx Lat 4.0 to 6.0, Lon 5.0 to 8.0)
-        is_niger_delta = (4.0 <= lat <= 6.0) and (5.0 <= lon <= 8.0)
+        # 3. Check if Niger Delta or Okavango Delta, Botswana
+        is_niger_delta = ((4.0 <= lat <= 6.0) and (5.0 <= lon <= 8.0)) or \
+                         ((-20.0 <= lat <= -18.0) and (22.0 <= lon <= 24.0))
         
         monthly_data = {}
         np.random.seed(int(abs(lat * lon * 100000)) % 123456)

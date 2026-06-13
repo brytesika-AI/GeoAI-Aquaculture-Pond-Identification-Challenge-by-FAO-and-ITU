@@ -46,9 +46,14 @@ export default function GeospatialDashboard() {
     if (map) map.setView([10.0, 105.5], 11);
   };
 
-  const flyToAfrica = () => {
+  const flyToEastAfrica = () => {
     const map = leafletMapRef.current;
     if (map) map.setView([0.20, 32.54], 6);
+  };
+
+  const flyToSouthernAfrica = () => {
+    const map = leafletMapRef.current;
+    if (map) map.setView([-19.0, 25.0], 5);
   };
 
   // Chatbot State
@@ -162,10 +167,10 @@ export default function GeospatialDashboard() {
       centerLon = 68.0;
       defaultZoom = 3;
     } else if (hasAfrica) {
-      // Focus on East Africa
-      centerLat = 0.20;
-      centerLon = 32.54;
-      defaultZoom = 6;
+      // Focus on wider Africa view (covering West, East, and Southern regions)
+      centerLat = -8.0;
+      centerLon = 25.0;
+      defaultZoom = 4;
     } else if (hasVietnam) {
       const lats = filteredData.map(pt => pt.lat);
       const lons = filteredData.map(pt => pt.lon);
@@ -626,11 +631,11 @@ Generate a concise, expert, helpful response:`;
                     fontWeight: '500'
                   }}
                 >
-                  🇻🇳 Mekong Delta
+                  🇻🇳 Mekong
                 </button>
                 <button
                   type="button"
-                  onClick={flyToAfrica}
+                  onClick={flyToEastAfrica}
                   style={{
                     flex: 1,
                     backgroundColor: '#1e293b',
@@ -638,12 +643,29 @@ Generate a concise, expert, helpful response:`;
                     border: '1px solid #334155',
                     borderRadius: '6px',
                     padding: '0.35rem',
-                    fontSize: '0.75rem',
+                    fontSize: '0.7rem',
                     cursor: 'pointer',
                     fontWeight: '500'
                   }}
                 >
                   🌍 East Africa
+                </button>
+                <button
+                  type="button"
+                  onClick={flyToSouthernAfrica}
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#1e293b',
+                    color: '#f8fafc',
+                    border: '1px solid #334155',
+                    borderRadius: '6px',
+                    padding: '0.35rem',
+                    fontSize: '0.7rem',
+                    cursor: 'pointer',
+                    fontWeight: '500'
+                  }}
+                >
+                  🌍 Southern Africa
                 </button>
               </div>
             </div>
