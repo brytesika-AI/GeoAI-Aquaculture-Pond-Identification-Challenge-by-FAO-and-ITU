@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Output predictions and cache
+outputs/
+*.npy
+*.parquet
+catboost_info/
+
+# Next.js build and Vercel artifacts (handled inside app/)
+app/.next/
+app/node_modules/
+app/.vercel/
+app/out/
+
+# Data files (exclude large CSVs)
+data/*.csv
+!data/africa_coordinates.csv
